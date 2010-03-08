@@ -4,6 +4,8 @@ require 'json'
 require 'open-uri'
 require 'timeout'
 
+rack_env = ENV['RACK_ENV'] || 'production'
+
 # Setup vendored library paths
 Dir.glob(File.join(File.dirname(__FILE__), "vendor", "*", "lib")).each{ |vendor| $:.unshift << vendor }
 require 'klarlack'
@@ -16,7 +18,7 @@ rescue LoadError
 end
 
 # Set up log file
-log = File.new("log/staging.log", "a") # This will make a nice sinatra log along side your apache access and error logs
+log = File.new("log/#{rack_env}.log", "a") # This will make a nice sinatra log along side your apache access and error logs
 STDOUT.reopen(log)
 STDERR.reopen(log)
 
