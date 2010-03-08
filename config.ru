@@ -10,7 +10,7 @@ require 'klarlack'
 
 # This is the address for the varnish server
 begin
-	require File.expand_path(File.join(File.dirname(__FILE__), '..', 'shared', 'varnish_config'))
+	require File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'shared', 'varnish_config'))
 rescue LoadError
 	VARNISH_SERVER = 'localhost:6082'
 end
